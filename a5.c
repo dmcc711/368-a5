@@ -135,10 +135,15 @@ int distance(int x1, int y1, int x2, int y2) {
 void freeQuadtree(Quadtree* qt) {
     if (qt->quadrants[0] != NULL) {
         for (int i = 0; i < 4; i++) {
-            freeQuadtree(qt->quadrants[i]);
+			if (qt->quadrants[i] != NULL) {
+				freeQuadtree(qt->quadrants[i]);
+			}
         }
     }
-    free(qt->points);
-    free(qt);
+	if (qt->points != NULL) {
+		free(qt->points);
+	}
+    
+	free(qt);
 }
 
