@@ -47,7 +47,7 @@ int main(int argc, char* argv[]) {
     fclose(file);
 
     int cx, cy, r;
-    while (scanf("%d %d %d", &cx, &cy, &r) == 3) {
+    while (scanf("%d %d %d", &cx, &cy, &r) != EOF) {
         int count = checkCircle(qt, cx, cy, r);
         printf("%d\n", count);
     }
@@ -146,4 +146,3 @@ void freeQuadtree(Quadtree* qt) {
     
 	free(qt);
 }
-
