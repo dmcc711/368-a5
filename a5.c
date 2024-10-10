@@ -114,7 +114,7 @@ int checkCircle(Quadtree* qt, int cx, int cy, int radius) {
 
     int count = 0;
     for (int i = 0; i < qt->point_count; i++) {
-        if (distance(qt->points[i].x, qt->points[i].y, cx, cy) <= (double)radius * radius) {
+        if (distance(qt->points[i].x, qt->points[i].y, cx, cy) <= radius * radius) {
             count++;
         }
     }
