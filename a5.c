@@ -89,9 +89,14 @@ bool insert(Quadtree* qt, Point p) {
 
     if (qt->quadrants[0] == NULL) divide(qt);
 
-    for (int i = 0; i < 4; i++) {
-        if (insert(qt->quadrants[i], p)) return true;
-    }
+    //for (int i = 0; i < 4; i++) {
+    //    if (insert(qt->quadrants[i], p)) return true;
+    //}
+	
+	if (insert(qt->quadrants[0], p)) return true;
+    if (insert(qt->quadrants[1], p)) return true;
+    if (insert(qt->quadrants[2], p)) return true;
+    if (insert(qt->quadrants[3], p)) return true;
 
     return false;
 }
