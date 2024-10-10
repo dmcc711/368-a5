@@ -21,7 +21,7 @@ bool insert(Quadtree* qt, Point p);
 bool checkBoundary(Quadtree* qt, Point p);
 bool intersectsCircle(Quadtree* qt, int cx, int cy, int radius);
 int checkCircle(Quadtree* qt, int cx, int cy, int radius);
-double distance(double x1, double y1, double x2, double y2);
+double distance(int x1, int y1, int x2, int y2);
 void freeQuadtree(Quadtree* qt);
 
 int main(int argc, char* argv[]) {
@@ -125,7 +125,7 @@ int checkCircle(Quadtree* qt, int cx, int cy, int radius) {
     return count;
 }
 
-double distance(double x1, double y1, double x2, double y2) {
+double distance(int x1, int y1, int x2, int y2) {
     return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
 }
 
