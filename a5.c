@@ -25,11 +25,6 @@ double distance(double x1, double y1, double x2, double y2);
 void freeQuadtree(Quadtree* qt);
 
 int main(int argc, char* argv[]) {
-    // if (argc != 2) {
-    //    printf("Usage: %s <points file>\n", argv[0]);
-    //    return 1;
-    //}
-
     FILE* file = fopen(argv[1], "r");
     if (file == NULL) {
         perror("Error opening file");
@@ -73,13 +68,15 @@ Quadtree* createQuadtree(int xmin, int ymin, int xmax, int ymax, int cap) {
 }
 
 void divide(Quadtree* qt) {
-    double midx = (qt->xmin + qt->xmax) / 2.0;
-    double midy = (qt->ymin + qt->ymax) / 2.0;
+    int midx = (qt->xmin + qt->xmax) / 2;
+    int midy = (qt->ymin + qt->ymax) / 2;
 
-    qt->quadrants[0] = createQuadtree(qt->xmin, qt->ymin, midx, midy, qt->cap); 
-    qt->quadrants[1] = createQuadtree(midx, qt->ymin, qt->xmax, midy, qt->cap);
-    qt->quadrants[2] = createQuadtree(qt->xmin, midy, midx, qt->ymax, qt->cap); 
-    qt->quadrants[3] = createQuadtree(midx, midy, qt->xmax, qt->ymax, qt->cap);
+	int new_cap = qt->cap > 4 ? qt->cap / 2 : 4;
+
+    qt->quadrants[0] = createQuadtree(qt->xmin, qt->ymin, midx, midy, new_cap); 
+    qt->quadrants[1] = createQuadtree(midx, qt->ymin, qt->xmax, midy, new_cap);
+    qt->quadrants[2] = createQuadtree(qt->xmin, midy, midx, qt->ymax, new_cap); 
+    qt->quadrants[3] = createQuadtree(midx, midy, qt->xmax, qt->ymax, new_cap);
 }
 
 bool insert(Quadtree* qt, Point p) {
